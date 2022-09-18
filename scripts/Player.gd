@@ -2,26 +2,43 @@
 # so we don't have to.
 extends RigidBody
 
+# All possible speeches of the player are contained in this resource.
+# MAKE SURE THAT IT'S AN INSTANCE OF PLAYERQUOTES.
+export(Resource) var quotes
+
+
 # The strength of the movement vector. 
 # This determines how fast the boat accelerates.
 const movement_strength = 0.05
+# How long the character speaks for, in seconds.
+const speech_time = 1.2
 
 # Record the player's fishing state to check what they are/aren't allowed to do.
 enum FishingState { IDLE, CASTING, FISHING }
 var fishing_state = FishingState.IDLE
+
+var speaking = false
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
 func _process(delta):
-	# If the player fishes, start playing the animation.
+	# If the player fishes
 	if Input.is_action_just_pressed("fish") and fishing_state == FishingState.IDLE:
-		
-		fishing_state = FishingState.CASTING
-		$Layers/Character.set_animation("casting")
-		# Actually start playing the animation.
-		$Layers/Character.playing = true
+		# We only allow the player to fish if they aren't moving.
+		# This nested if is deliberate to make things look cleaner.
+		if linear_velocity.length() < 0.1:
+			# Start playing the animation and update the fishing state.
+			fishing_state = FishingState.CASTING
+			$Layers/Character.set_animation("casting")
+			# Actually start playing the animation.
+			$Layers/Character.playing = true
+		else:
+			# If the player isn't allowed to fish, we'll have some way to tell the
+			# player to stop moving.
+			speak(quotes.cannot_fish_because_player_is_moving)
 	
 	# This vector provides a direction that our character moves in.
 	# However, our player has been rotated by a bit to make the perspective look
@@ -41,6 +58,10 @@ func _process(delta):
 		Input.get_action_strength("move_back") - Input.get_action_strength("move_front")
 	)
 	
+	# Since we are a rigid body, the game allows us to apply a force (acceleration)
+	# to our boat and move it according to the player's control.
+	apply_central_impulse(movement_vector.rotated(Vector3(0, 1, 0), ry) * movement_strength)
+	
 	# Control the animation of our boat based on if the player is moving/accelerating.
 	if movement_vector.length() > 0:
 		$Layers/Front.playing = true
@@ -59,10 +80,6 @@ func _process(delta):
 	# Water splashes are more visible the faster the player is moving.
 	$Layers/Splashes.opacity = linear_velocity.length() / 5
 	
-	# Since we are a rigid body, the game allows us to apply a force (acceleration)
-	# to our boat and move it according to the player's control.
-	apply_central_impulse(movement_vector.rotated(Vector3(0, 1, 0), ry) * movement_strength)
-	
 
 # This function is binded to the character, it gets called when any animation on
 # the character is finished.
@@ -74,3 +91,24 @@ func _on_character_animation_finished():
 	if fishing_state == FishingState.CASTING:
 		fishing_state = FishingState.FISHING
 		$Layers/Character.set_animation("fishing")
+
+# Makes the player talk by changing the viewport label.
+func speak(text: String):
+	# Only speak if the character isn't already speaking.
+	if not speaking:
+		$Speech.text = text
+		speaking = true
+		
+		# Wait for a bit before having the speech disappear.
+		yield(get_tree().create_timer(speech_time), "timeout")
+		
+		# Once speaking is finished, clear the text and reset the speaking state.
+		$Speech.text = ""
+		speaking = false
+
+
+# When integrating forces,
+func _integrate_forces(state):
+	# Remove any angular velocity
+	# So the boat doesn't start spinning.
+	state.angular_velocity = Vector3.ZERO
