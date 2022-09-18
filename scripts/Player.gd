@@ -17,28 +17,24 @@ const speech_time = 1.2
 enum FishingState { IDLE, CASTING, FISHING }
 var fishing_state = FishingState.IDLE
 
+# Tracks if the player is already speaking.
 var speaking = false
+
+# Have an RNG to keep track of fishing stuff.
+var rng = RandomNumberGenerator.new()
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	# Godot's RNGs have the same seed, use randomise upon initialisation to make
+	# sure that it's actually random.
+	rng.randomize()
+
 
 func _process(delta):
-	# If the player fishes
-	if Input.is_action_just_pressed("fish") and fishing_state == FishingState.IDLE:
-		# We only allow the player to fish if they aren't moving.
-		# This nested if is deliberate to make things look cleaner.
-		if linear_velocity.length() < 0.1:
-			# Start playing the animation and update the fishing state.
-			fishing_state = FishingState.CASTING
-			$Layers/Character.set_animation("casting")
-			# Actually start playing the animation.
-			$Layers/Character.playing = true
-		else:
-			# If the player isn't allowed to fish, we'll have some way to tell the
-			# player to stop moving.
-			speak(quotes.cannot_fish_because_player_is_moving)
+	# The fishing mechanic has been placed in a separate block of code to make
+	# all of this look cleaner.
+	update_fishing_mechanic()
 	
 	# This vector provides a direction that our character moves in.
 	# However, our player has been rotated by a bit to make the perspective look
@@ -58,9 +54,17 @@ func _process(delta):
 		Input.get_action_strength("move_back") - Input.get_action_strength("move_front")
 	)
 	
-	# Since we are a rigid body, the game allows us to apply a force (acceleration)
-	# to our boat and move it according to the player's control.
-	apply_central_impulse(movement_vector.rotated(Vector3(0, 1, 0), ry) * movement_strength)
+	# Only allow the player to move when the player isn't fishing.
+	if fishing_state == FishingState.IDLE:
+		# Since we are a rigid body, the game allows us to apply a force (acceleration)
+		# to our boat and move it according to the player's control.
+		apply_central_impulse(movement_vector.rotated(Vector3(0, 1, 0), ry) * movement_strength)
+	else:
+		# If the player is trying to move while they couldn't.
+		if movement_vector.length() > 0:
+			speak(quotes.cannot_move_because_player_is_fishing)
+			# Set movement to 0 so the player's animation doesn't update.
+			movement_vector = Vector3.ZERO
 	
 	# Control the animation of our boat based on if the player is moving/accelerating.
 	if movement_vector.length() > 0:
@@ -79,18 +83,7 @@ func _process(delta):
 	
 	# Water splashes are more visible the faster the player is moving.
 	$Layers/Splashes.opacity = linear_velocity.length() / 5
-	
 
-# This function is binded to the character, it gets called when any animation on
-# the character is finished.
-func _on_character_animation_finished():
-	# If the fishing state is casting, the completion of the animation would mean
-	# that the casting animation is finished.
-	# This allows us to switch to the fishing animation and update our fishing
-	# state accordingly.
-	if fishing_state == FishingState.CASTING:
-		fishing_state = FishingState.FISHING
-		$Layers/Character.set_animation("fishing")
 
 # Makes the player talk by changing the viewport label.
 func speak(text: String):
@@ -112,3 +105,90 @@ func _integrate_forces(state):
 	# Remove any angular velocity
 	# So the boat doesn't start spinning.
 	state.angular_velocity = Vector3.ZERO
+
+
+# This function is binded to the character, it gets called when any animation on
+# the character is finished.
+func _on_character_animation_finished():
+	# If the fishing state is casting, the completion of the animation would mean
+	# that the casting animation is finished.
+	# This allows us to switch to the fishing animation and update our fishing
+	# state accordingly.
+	if fishing_state == FishingState.CASTING:
+		fishing_state = FishingState.FISHING
+		$Layers/Character.set_animation("fishing")
+
+
+# The chance that the water will begin to bubble to indicate a potential catch
+# every tick.
+const bubble_chance = 0.005
+# Each time it bubbles, there's only a chance that you can catch the fish.
+const bubble_catch_chance = 0.5
+
+# The total duration of one bubble animation, in seconds.
+var bubbling_animation_duration = 3.0
+var bubbling = false
+# The starting time of the current bubbling animation, in MILLIseconds.
+var bubbling_time_start = 0
+
+var can_catch = false
+var fake_bubbling_intensity = 0.8
+
+# The fishing mechanic has been placed in a separate block of code to make
+# all of this look cleaner.
+func update_fishing_mechanic():
+	# If the player fishes
+	if Input.is_action_just_pressed("fish") and fishing_state == FishingState.IDLE:
+		# We only allow the player to fish if they aren't moving.
+		# This nested if is deliberate to make things look cleaner.
+		if linear_velocity.length() < 0.1:
+			# Start playing the animation and update the fishing state.
+			fishing_state = FishingState.CASTING
+			$Layers/Character.set_animation("casting")
+			# Actually start playing the animation.
+			$Layers/Character.playing = true
+		else:
+			# If the player isn't allowed to fish, we'll have some way to tell the
+			# player to stop moving.
+			speak(quotes.cannot_fish_because_player_is_moving)
+	
+	# If the player is currently fishing, and there's no bubbling animation 
+	# going on.
+	if fishing_state == FishingState.FISHING and not bubbling:
+		# Every tick, there's a small chance that the fish would start bubbling.
+		if rng.randf() < bubble_chance:
+			bubbling = true
+			# Track down when the bubbling started so we can calculate the animations.
+			bubbling_time_start = Time.get_ticks_msec()
+			
+			can_catch = rng.randf() < bubble_catch_chance
+	
+	# If we're currently bubbling.
+	if bubbling:
+		# Track how long it's been bubbling.
+		var time_since_bubbling = Time.get_ticks_msec() - bubbling_time_start
+		# The intensity maxes out in the middle.
+		var bubble_animation_duration = bubbling_animation_duration * 1000.0
+		var bubbling_progress = time_since_bubbling / bubble_animation_duration
+		var bubbling_intensity = 1 - abs(bubbling_progress - 0.5)
+		
+		# Update the opacity of the bubbles based on our intensity.
+		$Layers/Bubbles.opacity = bubbling_intensity
+		# Dim the opacity by a bit if this isn't a real catch.
+		if not can_catch:
+			$Layers/Bubbles.opacity *= fake_bubbling_intensity
+		
+		# If the bubbling time has ran out, turn it off.
+		if (time_since_bubbling > bubbling_animation_duration * 1000):
+			bubbling = false
+			# Make sure that this is exactly 0.
+			$Layers/Bubbles.opacity = 0
+		
+		# If we're in a sweetspot, the fish can be caught.
+		if bubbling_progress > 0.25 and bubbling_progress < 0.75\
+				and can_catch and Input.is_action_just_pressed("fish"):
+			print("FISHED!")
+			# Reset bubbling status.
+			bubbling = false
+			# Reset fishing status.
+			fishing_state = FishingState.IDLE
