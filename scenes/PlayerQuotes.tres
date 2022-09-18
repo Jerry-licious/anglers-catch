@@ -5,3 +5,4 @@
 [resource]
 script = ExtResource( 1 )
 cannot_fish_because_player_is_moving = "Can't fish because I'm moving!"
+cannot_move_because_player_is_fishing = "Can't move because I'm fishing!"

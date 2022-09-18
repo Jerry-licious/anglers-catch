@@ -5,3 +5,4 @@ class_name PlayerQuotes
 # This file represents things that the player says outside of examining
 # random fishing drops.
 export(String) var cannot_fish_because_player_is_moving
+export(String) var cannot_move_because_player_is_fishing
