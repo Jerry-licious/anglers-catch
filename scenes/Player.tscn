@@ -1,15 +1,17 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://images/character/boat_back.png" type="Texture" id=1]
-[ext_resource path="res://images/character/character.png" type="Texture" id=2]
-[ext_resource path="res://images/character/boat_front.png" type="Texture" id=3]
+[ext_resource path="res://images/boat/back.png" type="Texture" id=1]
+[ext_resource path="res://images/character/Character.tres" type="SpriteFrames" id=2]
+[ext_resource path="res://images/boat/BoatFront.tres" type="SpriteFrames" id=3]
 [ext_resource path="res://scripts/Player.gd" type="Script" id=4]
+[ext_resource path="res://images/boat/Splashes.tres" type="SpriteFrames" id=5]
 
 [sub_resource type="CapsuleShape" id=1]
 height = 2.0
 
 [node name="Player" type="RigidBody"]
-linear_damp = 4.0
+transform = Transform( 0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 0, 0, 0 )
+linear_damp = 2.0
 script = ExtResource( 4 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
@@ -17,17 +19,34 @@ transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0
 shape = SubResource( 1 )
 
 [node name="Layers" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 0.5, 0.866026, 0, -0.866026, 0.5, 0, 0, 0 )
 
 [node name="Back" type="Sprite3D" parent="Layers"]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
+transform = Transform( 0.8, -5.96046e-08, 2.98023e-08, -2.98023e-08, 0.813397, 0.0499999, -1.49012e-08, 0.05, 0.986602, 0, 0, 0 )
 texture = ExtResource( 1 )
 
-[node name="Character" type="Sprite3D" parent="Layers"]
+[node name="Character" type="AnimatedSprite3D" parent="Layers"]
+transform = Transform( 0.77, -2.98023e-08, 1.49012e-07, -2.68221e-07, 0.77, 1.19209e-07, -5.96046e-08, 8.9407e-08, 1, 0.807447, 0.241694, 0 )
 render_priority = 1
-texture = ExtResource( 2 )
+frames = ExtResource( 2 )
+animation = "casting"
 
-[node name="Front" type="Sprite3D" parent="Layers"]
-transform = Transform( 1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0 )
+[node name="Front" type="AnimatedSprite3D" parent="Layers"]
+transform = Transform( 80.132, 0, 0, 0, 77.4016, -20.7397, 0, 0.25882, 0.965917, 0, 0, 0 )
+pixel_size = 0.0001
 render_priority = 2
-texture = ExtResource( 3 )
+frames = ExtResource( 3 )
+animation = "moving"
+
+[node name="Splashes" type="AnimatedSprite3D" parent="Layers"]
+transform = Transform( 0.8, 2.98023e-08, 7.45058e-08, -2.08616e-07, 0.8, -8.9407e-08, -1.04308e-07, 2.98023e-08, 1, -0.114635, -0.69278, -1.49012e-08 )
+opacity = 0.0
+frames = ExtResource( 5 )
+frame = 1
+playing = true
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 10, 5 )
+current = true
+
+[connection signal="animation_finished" from="Layers/Character" to="." method="_on_character_animation_finished"]
