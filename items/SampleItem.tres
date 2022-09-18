@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://scripts/FishingItem.gd" type="Script" id=1]
+[ext_resource path="res://images/items/sample.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+name = "FEESH"
+image = ExtResource( 2 )
+description = "This beautiful FEESH was drawn by Doddy. Modify the description here!"
+examination_quotes = [ "This is one of the two lines that the character can say upon examination.", "This is the other line that the character can say upon examination." ]
