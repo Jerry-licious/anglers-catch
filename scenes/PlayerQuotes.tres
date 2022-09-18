@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://scripts/PlayerQuotes.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+cannot_fish_because_player_is_moving = "Can't fish because I'm moving!"
