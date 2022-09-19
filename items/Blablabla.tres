@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://scripts/FishingItem.gd" type="Script" id=1]
+[ext_resource path="res://images/water.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+name = "bla bla bla"
+image = ExtResource( 2 )
+description = "bla bla blabla bla blabla bla blabla bla blabla bla bla"
+examination_quotes = [  ]

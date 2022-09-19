@@ -1,0 +1,133 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://images/ui/reward_screen/fish_background.png" type="Texture" id=1]
+[ext_resource path="res://images/items/sample.png" type="Texture" id=2]
+[ext_resource path="res://images/ui/reward_screen/name_background.png" type="Texture" id=3]
+[ext_resource path="res://images/ui/reward_screen/description_background.png" type="Texture" id=4]
+[ext_resource path="res://scripts/ui/FishingRewardScreen.gd" type="Script" id=5]
+[ext_resource path="res://items/Blablabla.tres" type="Resource" id=6]
+
+[node name="FishRewardScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+fishing_item = ExtResource( 6 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+
+[node name="TopFiller" type="Control" parent="VBoxContainer"]
+margin_right = 1920.0
+margin_bottom = 143.0
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 151.0
+margin_right = 1920.0
+margin_bottom = 871.0
+custom_constants/separation = 40
+
+[node name="LeftFiller" type="Control" parent="VBoxContainer/HBoxContainer"]
+margin_right = 180.0
+margin_bottom = 720.0
+size_flags_horizontal = 3
+
+[node name="FishImage" type="AspectRatioContainer" parent="VBoxContainer/HBoxContainer"]
+margin_left = 220.0
+margin_right = 940.0
+margin_bottom = 720.0
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/HBoxContainer/FishImage"]
+margin_right = 720.0
+margin_bottom = 720.0
+
+[node name="Background" type="TextureRect" parent="VBoxContainer/HBoxContainer/FishImage/CenterContainer"]
+margin_right = 720.0
+margin_bottom = 720.0
+texture = ExtResource( 1 )
+
+[node name="Fish" type="TextureRect" parent="VBoxContainer/HBoxContainer/FishImage/CenterContainer"]
+margin_left = 60.0
+margin_top = 60.0
+margin_right = 660.0
+margin_bottom = 660.0
+texture = ExtResource( 2 )
+
+[node name="FishText" type="AspectRatioContainer" parent="VBoxContainer/HBoxContainer"]
+margin_left = 980.0
+margin_right = 1700.0
+margin_bottom = 720.0
+
+[node name="CenterContainer2" type="CenterContainer" parent="VBoxContainer/HBoxContainer/FishText"]
+margin_right = 720.0
+margin_bottom = 720.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/FishText/CenterContainer2"]
+margin_top = 65.0
+margin_right = 720.0
+margin_bottom = 655.0
+custom_constants/separation = 30
+
+[node name="NameBackground" type="TextureRect" parent="VBoxContainer/HBoxContainer/FishText/CenterContainer2/VBoxContainer"]
+margin_right = 720.0
+margin_bottom = 140.0
+texture = ExtResource( 3 )
+
+[node name="Name" type="Label" parent="VBoxContainer/HBoxContainer/FishText/CenterContainer2/VBoxContainer/NameBackground"]
+margin_left = 37.0
+margin_top = 6.0
+margin_right = 682.0
+margin_bottom = 136.0
+text = "Feesh"
+align = 1
+valign = 1
+
+[node name="DescriptionBackground" type="TextureRect" parent="VBoxContainer/HBoxContainer/FishText/CenterContainer2/VBoxContainer"]
+margin_top = 170.0
+margin_right = 720.0
+margin_bottom = 590.0
+texture = ExtResource( 4 )
+
+[node name="Description" type="Label" parent="VBoxContainer/HBoxContainer/FishText/CenterContainer2/VBoxContainer/DescriptionBackground"]
+margin_right = 719.0
+margin_bottom = 418.0
+text = "Feesh feesh feesh feesh feesh feesh feesh feesh feesh feesh feesh feesh feesh feesh feesh feesh feesh feesh feesh feesh feesh feesh feesh feesh feesh feesh feesh feesh feesh feesh feesh feesh feesh feesh feesh feesh feesh feesh feesh feesh"
+autowrap = true
+
+[node name="RightFiller" type="Control" parent="VBoxContainer/HBoxContainer"]
+margin_left = 1740.0
+margin_right = 1920.0
+margin_bottom = 720.0
+size_flags_horizontal = 3
+
+[node name="DismissContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 879.0
+margin_right = 1920.0
+margin_bottom = 929.0
+
+[node name="LeftFiller" type="Control" parent="VBoxContainer/DismissContainer"]
+margin_right = 882.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+
+[node name="DismissButton" type="Button" parent="VBoxContainer/DismissContainer"]
+margin_left = 890.0
+margin_right = 1030.0
+margin_bottom = 50.0
+text = "Dismiss"
+
+[node name="RightFiller" type="Control" parent="VBoxContainer/DismissContainer"]
+margin_left = 1038.0
+margin_right = 1920.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+
+[node name="BottomFiller" type="Control" parent="VBoxContainer"]
+margin_top = 937.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+size_flags_vertical = 3
+
+[connection signal="pressed" from="VBoxContainer/DismissContainer/DismissButton" to="." method="_dismiss_menu"]
