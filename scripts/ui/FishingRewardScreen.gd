@@ -1,3 +1,5 @@
+# Use the tool keyword to have this script work in the inspector.
+tool
 extends Control
 
 # The fishing item that the screen represents.
@@ -10,6 +12,7 @@ onready var fish_description = $VBoxContainer/HBoxContainer/FishText/CenterConta
 
 
 func _ready():
+	hide()
 	# If the fishing item isn't null, display it.
 	if not fishing_item == null:
 		load_fishing_item(fishing_item)
@@ -25,3 +28,8 @@ func load_fishing_item(item):
 # This is called when the dismiss button is called.
 func _dismiss_menu():
 	hide()
+
+# Connected to the signal when the player catches a fish.
+func _on_catch(item):
+	load_fishing_item(item)
+	show()

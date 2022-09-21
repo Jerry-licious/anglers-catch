@@ -9,3 +9,4 @@ name = "bla bla bla"
 image = ExtResource( 2 )
 description = "bla bla blabla bla blabla bla blabla bla blabla bla bla"
 examination_quotes = [  ]
+exhaustable = false

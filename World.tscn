@@ -1,12 +1,31 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/gridmap/GridMap.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/ui/FishingRewardScreen.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/ui/InventoryScreen.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scripts/Main.gd" type="Script" id=5]
+[ext_resource path="res://scenes/ui/Overlay.tscn" type="PackedScene" id=6]
 
 [node name="World" type="Spatial"]
+script = ExtResource( 5 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Overlay" parent="CanvasLayer" instance=ExtResource( 6 )]
+
+[node name="Inventory" parent="CanvasLayer" instance=ExtResource( 4 )]
+visible = false
+
+[node name="FishRewardScreen" parent="CanvasLayer" instance=ExtResource( 3 )]
+visible = false
 
 [node name="Tilemap" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.5153, -6.21697, -33.1743 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 0, 3.1892, 0 )
+
+[connection signal="open_inventory" from="CanvasLayer/Overlay" to="." method="_on_overlay_open_inventory"]
+[connection signal="catch" from="Player" to="CanvasLayer/FishRewardScreen" method="_on_catch"]
+[connection signal="catch" from="Player" to="CanvasLayer/Inventory" method="_on_catch"]

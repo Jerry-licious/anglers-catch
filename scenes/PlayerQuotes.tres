@@ -6,3 +6,8 @@
 script = ExtResource( 1 )
 cannot_fish_because_player_is_moving = "Can't fish because I'm moving!"
 cannot_move_because_player_is_fishing = "Can't move because I'm fishing!"
+premature_pull = "Shouldn't have pulled when it wasn't bubbling."
+missed_fish = "Almost got it!"
+hooked = "Ah, it's hooked!"
+not_hooked = "Looks like we're waiting this one out."
+no_fish = "Doesn't seem like there's anything here."

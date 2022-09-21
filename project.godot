@@ -15,12 +15,18 @@ _global_script_classes=[ {
 "path": "res://scripts/FishingItem.gd"
 }, {
 "base": "Resource",
+"class": "Inventory",
+"language": "GDScript",
+"path": "res://scripts/Inventory.gd"
+}, {
+"base": "Resource",
 "class": "PlayerQuotes",
 "language": "GDScript",
 "path": "res://scripts/PlayerQuotes.gd"
 } ]
 _global_script_class_icons={
 "FishingItem": "",
+"Inventory": "",
 "PlayerQuotes": ""
 }
 

@@ -13,6 +13,12 @@ export(String) var name
 export(Texture) var image
 export(String) var description
 export(Array, String) var examination_quotes
+# If this item can be fished up without removing it from the pool that 
+# it belongs to.
+export(bool) var exhaustable
+
+# The number of times that the player has obtained this item.
+var times_caught: int = 1
 
 # Make a random number generator that allows us to pick random examination quotes.
 var rng = RandomNumberGenerator.new()
@@ -24,14 +30,14 @@ var rng = RandomNumberGenerator.new()
 func _init(p_name = "UNNAMED OBJECT", \
 		p_image = load("icon.png"), \
 		p_description = "NO DESCRIPTION", \
-		p_examination_quotes = []):
+		p_examination_quotes = [], \
+		p_exhaustable = false):
 	# We'll assign the initial values to the object here.
 	name = p_name
 	image = p_image
 	description = p_description
 	examination_quotes = p_examination_quotes
-	
-	print(examination_quotes.size())
+	exhaustable = p_exhaustable
 	
 	# By default, random number generators start with the same seed. To make
 	# it unique, we'll randomise the randomiser.

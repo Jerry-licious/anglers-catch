@@ -1,4 +1,5 @@
 extends Resource
+class_name Inventory
 
 # An inventory contains a list of item.
 # THIS MUST BE A LIST OF FISHINGITEMS.

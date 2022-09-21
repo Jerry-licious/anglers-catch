@@ -6,6 +6,8 @@ extends RigidBody
 # MAKE SURE THAT IT'S AN INSTANCE OF PLAYERQUOTES.
 export(Resource) var quotes
 
+# The player emits a catch signal when they catch a fish.
+signal catch(item)
 
 # The strength of the movement vector. 
 # This determines how fast the boat accelerates.
@@ -137,58 +139,106 @@ var fake_bubbling_intensity = 0.8
 # The fishing mechanic has been placed in a separate block of code to make
 # all of this look cleaner.
 func update_fishing_mechanic():
-	# If the player fishes
-	if Input.is_action_just_pressed("fish") and fishing_state == FishingState.IDLE:
-		# We only allow the player to fish if they aren't moving.
-		# This nested if is deliberate to make things look cleaner.
-		if linear_velocity.length() < 0.1:
-			# Start playing the animation and update the fishing state.
-			fishing_state = FishingState.CASTING
-			$Layers/Character.set_animation("casting")
-			# Actually start playing the animation.
-			$Layers/Character.playing = true
-		else:
-			# If the player isn't allowed to fish, we'll have some way to tell the
-			# player to stop moving.
-			speak(quotes.cannot_fish_because_player_is_moving)
+	# Track how long it's been bubbling.
+	var time_since_bubbling = Time.get_ticks_msec() - bubbling_time_start
+	# The intensity maxes out in the middle.
+	var bubble_animation_duration = bubbling_animation_duration * 1000.0
+	var bubbling_progress = time_since_bubbling / bubble_animation_duration
+	var bubbling_intensity = 1 - abs(bubbling_progress - 0.5)
+	
+	# If the player uses the fish button.
+	if Input.is_action_just_pressed("fish"):
+		# If they're not currently fishing.
+		if fishing_state == FishingState.IDLE:
+			# We only allow the player to fish if they aren't moving.
+			# This nested if is deliberate to make things look cleaner.
+			if linear_velocity.length() < 0.1:
+				# Start playing the animation and update the fishing state.
+				fishing_state = FishingState.CASTING
+				$Layers/Character.set_animation("casting")
+				# Actually start playing the animation.
+				$Layers/Character.playing = true
+			else:
+				# If the player isn't allowed to fish, we'll have some way to tell the
+				# player to stop moving.
+				speak(quotes.cannot_fish_because_player_is_moving)
+		elif fishing_state == FishingState.FISHING:
+			# If we're in a sweetspot, the fish can be caught.
+			if can_catch:
+				if bubbling:
+					if bubbling_progress > 0.25 and bubbling_progress < 0.75:
+						emit_signal("catch", get_fish())
+					else:
+						speak(quotes.missed_fish)
+				else:
+					speak(quotes.premature_pull)
+			# Reset bubbling status.
+			bubbling = false
+			$Layers/Bubbles.opacity = 0
+			# Reset fishing status.
+			fishing_state = FishingState.IDLE
+			$Layers/Character.set_animation("default")
 	
 	# If the player is currently fishing, and there's no bubbling animation 
 	# going on.
 	if fishing_state == FishingState.FISHING and not bubbling:
 		# Every tick, there's a small chance that the fish would start bubbling.
 		if rng.randf() < bubble_chance:
-			bubbling = true
-			# Track down when the bubbling started so we can calculate the animations.
-			bubbling_time_start = Time.get_ticks_msec()
-			
-			can_catch = rng.randf() < bubble_catch_chance
+			if can_fish():
+				bubbling = true
+				# Track down when the bubbling started so we can calculate the animations.
+				bubbling_time_start = Time.get_ticks_msec()
+				
+				can_catch = rng.randf() < bubble_catch_chance
+			else:
+				speak(quotes.no_fish)
 	
 	# If we're currently bubbling.
 	if bubbling:
-		# Track how long it's been bubbling.
-		var time_since_bubbling = Time.get_ticks_msec() - bubbling_time_start
-		# The intensity maxes out in the middle.
-		var bubble_animation_duration = bubbling_animation_duration * 1000.0
-		var bubbling_progress = time_since_bubbling / bubble_animation_duration
-		var bubbling_intensity = 1 - abs(bubbling_progress - 0.5)
-		
 		# Update the opacity of the bubbles based on our intensity.
 		$Layers/Bubbles.opacity = bubbling_intensity
-		# Dim the opacity by a bit if this isn't a real catch.
+		
+		# The player can detect early in the bubbling if it's time to catch.
+		if bubbling_progress > 0.25 and bubbling_progress < 0.3\
+				 and rng.randf() < 0.1:
+			if can_catch:
+				speak(quotes.hooked)
+			else:
+				speak(quotes.not_hooked)
+		
+		
 		if not can_catch:
+			# Dim the opacity by a bit if this isn't a real catch.
 			$Layers/Bubbles.opacity *= fake_bubbling_intensity
+		
 		
 		# If the bubbling time has ran out, turn it off.
 		if (time_since_bubbling > bubbling_animation_duration * 1000):
 			bubbling = false
 			# Make sure that this is exactly 0.
 			$Layers/Bubbles.opacity = 0
-		
-		# If we're in a sweetspot, the fish can be caught.
-		if bubbling_progress > 0.25 and bubbling_progress < 0.75\
-				and can_catch and Input.is_action_just_pressed("fish"):
-			print("FISHED!")
-			# Reset bubbling status.
-			bubbling = false
-			# Reset fishing status.
-			fishing_state = FishingState.IDLE
+
+
+# This area has the same hitbox as the player, if it overlaps with a given
+# fishing area, you can fish from there.
+onready var fishing_detect: Area = $FishingDetect
+
+
+# Determines if the player is actually next to another fishing area and can 
+# hook anything up.
+func can_fish() -> bool:
+	for area in fishing_detect.get_overlapping_areas():
+		# Just in case the overlapping area isn't a fishing area.
+		if area.has_method("get_item"):
+			return true
+	return false
+
+
+# Draws an item from the current fishing area.
+func get_fish() -> FishingItem:
+	for area in fishing_detect.get_overlapping_areas():
+		# Just in case the overlapping area isn't a fishing area.
+		if area.has_method("get_item"):
+			return area.get_item()
+	# This shouldn't happen.
+	return null

@@ -22,6 +22,13 @@ quotes = ExtResource( 7 )
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
 shape = SubResource( 1 )
 
+[node name="FishingDetect" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="FishingDetect"]
+transform = Transform( -5.96046e-08, 0, 1, 0, 1, 0, -1, 0, -5.96046e-08, 0, 0, 0 )
+shape = SubResource( 1 )
+
 [node name="Layers" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.5, 0.866026, 0, -0.866026, 0.5, 0, 0, 0 )
 
@@ -29,7 +36,7 @@ transform = Transform( 1, 0, 0, 0, 0.5, 0.866026, 0, -0.866026, 0.5, 0, 0, 0 )
 transform = Transform( 0.600001, -1.49012e-07, 0, 8.9407e-08, 0.519616, 0.5, -5.96046e-08, -0.3, 0.866025, 2.73834, -0.15979, -0.345718 )
 opacity = 0.0
 frames = ExtResource( 6 )
-frame = 1
+frame = 3
 playing = true
 
 [node name="Back" type="Sprite3D" parent="Layers"]

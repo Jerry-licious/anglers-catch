@@ -1,0 +1,132 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scripts/ui/InventoryScreen.gd" type="Script" id=1]
+[ext_resource path="res://items/Inventory.tres" type="Resource" id=2]
+[ext_resource path="res://images/items/sample.png" type="Texture" id=3]
+
+[node name="Inventory" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+inventory = ExtResource( 2 )
+
+[node name="Center" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="TopFiller" type="Control" parent="Center"]
+margin_right = 1920.0
+margin_bottom = 114.0
+size_flags_vertical = 3
+
+[node name="HBox" type="HBoxContainer" parent="Center"]
+margin_top = 122.0
+margin_right = 1920.0
+margin_bottom = 900.0
+
+[node name="LeftFiller" type="Control" parent="Center/HBox"]
+margin_right = 320.0
+margin_bottom = 778.0
+size_flags_horizontal = 3
+
+[node name="Panel" type="PanelContainer" parent="Center/HBox"]
+margin_left = 328.0
+margin_right = 956.0
+margin_bottom = 778.0
+
+[node name="List" type="HFlowContainer" parent="Center/HBox/Panel"]
+margin_left = 14.0
+margin_top = 14.0
+margin_right = 614.0
+margin_bottom = 764.0
+rect_min_size = Vector2( 600, 750 )
+custom_constants/vseparation = 30
+custom_constants/hseparation = 30
+
+[node name="ExamineContainer" type="PanelContainer" parent="Center/HBox"]
+margin_left = 964.0
+margin_right = 1592.0
+margin_bottom = 778.0
+
+[node name="VBox" type="VBoxContainer" parent="Center/HBox/ExamineContainer"]
+margin_left = 14.0
+margin_top = 14.0
+margin_right = 614.0
+margin_bottom = 764.0
+rect_min_size = Vector2( 600, 0 )
+alignment = 1
+
+[node name="Center" type="HBoxContainer" parent="Center/HBox/ExamineContainer/VBox"]
+margin_top = 107.0
+margin_right = 600.0
+margin_bottom = 407.0
+alignment = 1
+
+[node name="ImageContainer" type="PanelContainer" parent="Center/HBox/ExamineContainer/VBox/Center"]
+margin_left = 150.0
+margin_right = 450.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 300, 300 )
+
+[node name="Image" type="TextureRect" parent="Center/HBox/ExamineContainer/VBox/Center/ImageContainer"]
+margin_left = 14.0
+margin_top = 14.0
+margin_right = 286.0
+margin_bottom = 286.0
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6
+
+[node name="NameContainer" type="PanelContainer" parent="Center/HBox/ExamineContainer/VBox"]
+margin_top = 415.0
+margin_right = 600.0
+margin_bottom = 481.0
+
+[node name="Name" type="Label" parent="Center/HBox/ExamineContainer/VBox/NameContainer"]
+margin_left = 14.0
+margin_top = 14.0
+margin_right = 586.0
+margin_bottom = 52.0
+text = "Name"
+align = 1
+
+[node name="DescriptionContainer" type="PanelContainer" parent="Center/HBox/ExamineContainer/VBox"]
+margin_top = 489.0
+margin_right = 600.0
+margin_bottom = 643.0
+
+[node name="Description" type="Label" parent="Center/HBox/ExamineContainer/VBox/DescriptionContainer"]
+margin_left = 14.0
+margin_top = 14.0
+margin_right = 586.0
+margin_bottom = 140.0
+text = "Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla "
+autowrap = true
+
+[node name="RightFiller" type="Control" parent="Center/HBox"]
+margin_left = 1600.0
+margin_right = 1920.0
+margin_bottom = 778.0
+size_flags_horizontal = 3
+
+[node name="ButtonContainer" type="HBoxContainer" parent="Center"]
+margin_top = 908.0
+margin_right = 1920.0
+margin_bottom = 958.0
+alignment = 1
+
+[node name="Button" type="Button" parent="Center/ButtonContainer"]
+margin_left = 907.0
+margin_right = 1012.0
+margin_bottom = 50.0
+text = "Close"
+
+[node name="BottomFiller" type="Control" parent="Center"]
+margin_top = 966.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+size_flags_vertical = 3
+
+[connection signal="pressed" from="Center/HBox/Panel/List/InventoryItemButton" to="Center/HBox/Panel/List/InventoryItemButton" method="_on_clicked"]
+[connection signal="pressed" from="Center/HBox/Panel/List/InventoryItemButton2" to="Center/HBox/Panel/List/InventoryItemButton2" method="_on_clicked"]
+[connection signal="pressed" from="Center/ButtonContainer/Button" to="." method="_on_close_button_pressed"]

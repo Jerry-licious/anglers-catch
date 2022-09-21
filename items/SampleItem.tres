@@ -9,3 +9,4 @@ name = "FEESH"
 image = ExtResource( 2 )
 description = "This beautiful FEESH was drawn by Doddy. Modify the description here!"
 examination_quotes = [ "This is one of the two lines that the character can say upon examination.", "This is the other line that the character can say upon examination." ]
+exhaustable = false
