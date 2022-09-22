@@ -1,7 +1,21 @@
-[gd_resource type="Theme" load_steps=2 format=2]
+[gd_resource type="Theme" load_steps=4 format=2]
 
-[ext_resource path="res://ui/fonts/RobotoDynamicFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://ui/DefaultStylebox.tres" type="StyleBox" id=2]
+[ext_resource path="res://ui/fonts/KristenITC.tres" type="DynamicFont" id=3]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.901961, 0.858824, 0.792157, 1 )
+draw_center = false
+border_color = Color( 0, 0, 0, 1 )
 
 [resource]
-default_font = ExtResource( 1 )
-Fonts/fonts/large = ExtResource( 1 )
+default_font = ExtResource( 3 )
+Button/colors/font_color = Color( 0, 0, 0, 1 )
+Button/fonts/font = ExtResource( 3 )
+Button/styles/hover = ExtResource( 2 )
+Button/styles/normal = ExtResource( 2 )
+Button/styles/pressed = null
+Fonts/fonts/large = ExtResource( 3 )
+Fonts/fonts/normal = ExtResource( 3 )
+Label/colors/font_color = Color( 0, 0, 0, 1 )
+PanelContainer/styles/panel = SubResource( 1 )

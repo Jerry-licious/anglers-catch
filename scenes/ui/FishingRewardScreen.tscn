@@ -1,135 +1,66 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://images/ui/reward_screen/fish_background.png" type="Texture" id=1]
-[ext_resource path="res://images/water.png" type="Texture" id=2]
-[ext_resource path="res://images/ui/reward_screen/name_background.png" type="Texture" id=3]
-[ext_resource path="res://images/ui/reward_screen/description_background.png" type="Texture" id=4]
+[ext_resource path="res://images/ui/shine_ui.png" type="Texture" id=1]
+[ext_resource path="res://images/items/sample.png" type="Texture" id=2]
+[ext_resource path="res://images/ui/Info_box.png" type="Texture" id=3]
+[ext_resource path="res://items/SampleItem.tres" type="Resource" id=4]
 [ext_resource path="res://scripts/ui/FishingRewardScreen.gd" type="Script" id=5]
-[ext_resource path="res://items/Blablabla.tres" type="Resource" id=6]
 
 [node name="FishRewardScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 5 )
-fishing_item = ExtResource( 6 )
+fishing_item = ExtResource( 4 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-size_flags_horizontal = 3
-
-[node name="TopFiller" type="Control" parent="VBoxContainer"]
-margin_right = 1920.0
-margin_bottom = 143.0
-size_flags_vertical = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 151.0
-margin_right = 1920.0
-margin_bottom = 871.0
-custom_constants/separation = 40
-
-[node name="LeftFiller" type="Control" parent="VBoxContainer/HBoxContainer"]
-margin_right = 180.0
-margin_bottom = 720.0
-size_flags_horizontal = 3
-
-[node name="FishImage" type="AspectRatioContainer" parent="VBoxContainer/HBoxContainer"]
-margin_left = 220.0
-margin_right = 940.0
-margin_bottom = 720.0
-
-[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/HBoxContainer/FishImage"]
-margin_right = 720.0
-margin_bottom = 720.0
-
-[node name="Background" type="TextureRect" parent="VBoxContainer/HBoxContainer/FishImage/CenterContainer"]
-margin_right = 720.0
-margin_bottom = 720.0
+[node name="Background" type="TextureRect" parent="."]
+margin_left = -144.0
+margin_top = -122.0
+margin_right = 2163.0
+margin_bottom = 1176.0
 texture = ExtResource( 1 )
+expand = true
 
-[node name="Fish" type="TextureRect" parent="VBoxContainer/HBoxContainer/FishImage/CenterContainer"]
-margin_left = 104.0
-margin_top = 104.0
-margin_right = 616.0
-margin_bottom = 616.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture = ExtResource( 2 )
-
-[node name="FishText" type="AspectRatioContainer" parent="VBoxContainer/HBoxContainer"]
-margin_left = 980.0
-margin_right = 1700.0
-margin_bottom = 720.0
-
-[node name="CenterContainer2" type="CenterContainer" parent="VBoxContainer/HBoxContainer/FishText"]
-margin_right = 720.0
-margin_bottom = 720.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/FishText/CenterContainer2"]
-margin_top = 65.0
-margin_right = 720.0
-margin_bottom = 655.0
-custom_constants/separation = 30
-
-[node name="NameBackground" type="TextureRect" parent="VBoxContainer/HBoxContainer/FishText/CenterContainer2/VBoxContainer"]
-margin_right = 720.0
-margin_bottom = 140.0
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 411.0
+margin_top = 130.0
+margin_right = 1632.0
+margin_bottom = 817.0
 texture = ExtResource( 3 )
+expand = true
 
-[node name="Name" type="Label" parent="VBoxContainer/HBoxContainer/FishText/CenterContainer2/VBoxContainer/NameBackground"]
-margin_left = 37.0
-margin_top = 6.0
-margin_right = 682.0
-margin_bottom = 136.0
-text = "bla bla bla"
+[node name="Name" type="Label" parent="."]
+margin_left = 1133.0
+margin_top = 248.0
+margin_right = 1291.0
+margin_bottom = 292.0
+text = "FEESH"
 align = 1
 valign = 1
 
-[node name="DescriptionBackground" type="TextureRect" parent="VBoxContainer/HBoxContainer/FishText/CenterContainer2/VBoxContainer"]
-margin_top = 170.0
-margin_right = 720.0
-margin_bottom = 590.0
-texture = ExtResource( 4 )
-
-[node name="Description" type="Label" parent="VBoxContainer/HBoxContainer/FishText/CenterContainer2/VBoxContainer/DescriptionBackground"]
-margin_right = 719.0
-margin_bottom = 418.0
-text = "bla bla blabla bla blabla bla blabla bla blabla bla bla"
+[node name="Description" type="Label" parent="."]
+margin_left = 973.0
+margin_top = 397.0
+margin_right = 1475.0
+margin_bottom = 762.0
+text = "This beautiful FEESH was drawn by Doddy. Modify the description here!"
 autowrap = true
 
-[node name="RightFiller" type="Control" parent="VBoxContainer/HBoxContainer"]
-margin_left = 1740.0
-margin_right = 1920.0
-margin_bottom = 720.0
+[node name="Fish" type="TextureRect" parent="."]
+margin_left = 560.0
+margin_top = 381.0
+margin_right = 810.0
+margin_bottom = 631.0
+rect_min_size = Vector2( 250, 250 )
 size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 2 )
+expand = true
 
-[node name="DismissContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 879.0
-margin_right = 1920.0
-margin_bottom = 929.0
-
-[node name="LeftFiller" type="Control" parent="VBoxContainer/DismissContainer"]
-margin_right = 882.0
-margin_bottom = 50.0
-size_flags_horizontal = 3
-
-[node name="DismissButton" type="Button" parent="VBoxContainer/DismissContainer"]
-margin_left = 890.0
-margin_right = 1030.0
-margin_bottom = 50.0
+[node name="DismissButton" type="Button" parent="."]
+margin_left = 1170.0
+margin_top = 827.0
+margin_right = 1294.0
+margin_bottom = 877.0
 text = "Dismiss"
 
-[node name="RightFiller" type="Control" parent="VBoxContainer/DismissContainer"]
-margin_left = 1038.0
-margin_right = 1920.0
-margin_bottom = 50.0
-size_flags_horizontal = 3
-
-[node name="BottomFiller" type="Control" parent="VBoxContainer"]
-margin_top = 937.0
-margin_right = 1920.0
-margin_bottom = 1080.0
-size_flags_vertical = 3
-
-[connection signal="pressed" from="VBoxContainer/DismissContainer/DismissButton" to="." method="_dismiss_menu"]
+[connection signal="pressed" from="DismissButton" to="." method="_dismiss_menu"]

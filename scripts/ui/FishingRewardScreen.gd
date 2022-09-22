@@ -6,9 +6,9 @@ extends Control
 # THIS HAS TO BE AN INSTANCE OF FISHINGITEM.
 export(Resource) var fishing_item
 
-onready var fish_image = $VBoxContainer/HBoxContainer/FishImage/CenterContainer/Fish
-onready var fish_name = $VBoxContainer/HBoxContainer/FishText/CenterContainer2/VBoxContainer/NameBackground/Name
-onready var fish_description = $VBoxContainer/HBoxContainer/FishText/CenterContainer2/VBoxContainer/DescriptionBackground/Description
+onready var fish_image = $Fish
+onready var fish_name = $Name
+onready var fish_description = $Description
 
 
 func _ready():

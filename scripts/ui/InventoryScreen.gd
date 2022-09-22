@@ -6,7 +6,7 @@ extends Control
 export(Resource) var inventory
 
 # Where each item is placed.
-onready var list = $Center/HBox/Panel/List
+onready var list = $Center/HBox/ListContainer/List
 var ItemButton = preload("res://scenes/ui/InventoryItemButton.tscn")
 
 
