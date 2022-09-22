@@ -51,7 +51,9 @@ func display_item(item: FishingItem):
 func _on_catch(item):
 	inventory.add_item(item)
 	refresh()
+	get_tree().paused = true
 
 
 func _on_close_button_pressed():
 	hide()
+	get_tree().paused = false

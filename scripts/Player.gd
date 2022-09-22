@@ -13,7 +13,7 @@ signal catch(item)
 # This determines how fast the boat accelerates.
 const movement_strength = 0.05
 # How long the character speaks for, in seconds.
-const speech_time = 1.2
+const speech_time = 1.8
 
 # Record the player's fishing state to check what they are/aren't allowed to do.
 enum FishingState { IDLE, CASTING, FISHING }
@@ -134,7 +134,7 @@ var bubbling = false
 var bubbling_time_start = 0
 
 var can_catch = false
-var fake_bubbling_intensity = 0.8
+var fake_bubbling_intensity = 0.4
 
 # The fishing mechanic has been placed in a separate block of code to make
 # all of this look cleaner.

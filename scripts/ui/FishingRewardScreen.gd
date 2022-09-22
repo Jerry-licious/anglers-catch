@@ -10,6 +10,8 @@ onready var fish_image = $Fish
 onready var fish_name = $Name
 onready var fish_description = $Description
 
+var last_opened_time: int = 0
+
 
 func _ready():
 	hide()
@@ -28,8 +30,11 @@ func load_fishing_item(item):
 # This is called when the dismiss button is called.
 func _dismiss_menu():
 	hide()
+	get_tree().paused = false
+
 
 # Connected to the signal when the player catches a fish.
 func _on_catch(item):
 	load_fishing_item(item)
 	show()
+	get_tree().paused = true

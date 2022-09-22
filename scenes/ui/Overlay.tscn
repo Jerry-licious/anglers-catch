@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/ui/Overlay.gd" type="Script" id=1]
+[ext_resource path="res://ui/Hint.tres" type="StyleBox" id=2]
+[ext_resource path="res://scripts/ui/MovementHint.gd" type="Script" id=3]
+[ext_resource path="res://scripts/ui/FishHint.gd" type="Script" id=4]
 
 [node name="Overlay" type="Control"]
 anchor_right = 1.0
@@ -10,20 +13,66 @@ script = ExtResource( 1 )
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 40.0
+margin_top = 40.0
+margin_right = -40.0
+margin_bottom = -40.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_right = 1920.0
+margin_right = 1840.0
 margin_bottom = 50.0
 
 [node name="LeftFiller" type="Control" parent="VBoxContainer/HBoxContainer"]
-margin_right = 1673.0
+margin_right = 1668.0
 margin_bottom = 50.0
 size_flags_horizontal = 3
 
 [node name="InventoryButton" type="Button" parent="VBoxContainer/HBoxContainer"]
-margin_left = 1681.0
-margin_right = 1920.0
+margin_left = 1676.0
+margin_right = 1840.0
 margin_bottom = 50.0
-text = "Open Inventory"
+text = "Notebook"
+
+[node name="MidFiller" type="Control" parent="VBoxContainer"]
+margin_top = 58.0
+margin_right = 1840.0
+margin_bottom = 918.0
+size_flags_vertical = 3
+
+[node name="ControlHints" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 926.0
+margin_right = 1840.0
+margin_bottom = 1000.0
+alignment = 2
+
+[node name="MovementHint" type="PanelContainer" parent="VBoxContainer/ControlHints"]
+margin_left = 1358.0
+margin_right = 1615.0
+margin_bottom = 74.0
+custom_styles/panel = ExtResource( 2 )
+script = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="VBoxContainer/ControlHints/MovementHint"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 242.0
+margin_bottom = 59.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "WASD - Move"
+
+[node name="FishHint" type="PanelContainer" parent="VBoxContainer/ControlHints"]
+margin_left = 1623.0
+margin_right = 1840.0
+margin_bottom = 74.0
+custom_styles/panel = ExtResource( 2 )
+script = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="VBoxContainer/ControlHints/FishHint"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 202.0
+margin_bottom = 59.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "E - Fish/Pull"
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/InventoryButton" to="." method="_on_inventory_button_pressed"]

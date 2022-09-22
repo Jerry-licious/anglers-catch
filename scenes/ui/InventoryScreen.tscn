@@ -1,19 +1,24 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/ui/InventoryScreen.gd" type="Script" id=1]
 [ext_resource path="res://items/Inventory.tres" type="Resource" id=2]
-[ext_resource path="res://images/items/sample.png" type="Texture" id=3]
 [ext_resource path="res://images/ui/book.png" type="Texture" id=4]
 [ext_resource path="res://ui/UITheme.tres" type="Theme" id=5]
 
 [node name="Inventory" type="Control"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 5 )
 script = ExtResource( 1 )
 inventory = ExtResource( 2 )
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.501961 )
+
+[node name="BackgroundImage" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -49.0
@@ -63,9 +68,9 @@ custom_constants/separation = 30
 alignment = 1
 
 [node name="Center" type="HBoxContainer" parent="Center/HBox/ExamineContainer/VBox"]
-margin_top = 76.0
+margin_top = 151.0
 margin_right = 550.0
-margin_bottom = 376.0
+margin_bottom = 451.0
 alignment = 1
 
 [node name="ImageContainer" type="PanelContainer" parent="Center/HBox/ExamineContainer/VBox/Center"]
@@ -77,30 +82,27 @@ rect_min_size = Vector2( 300, 300 )
 [node name="Image" type="TextureRect" parent="Center/HBox/ExamineContainer/VBox/Center/ImageContainer"]
 margin_right = 300.0
 margin_bottom = 300.0
-texture = ExtResource( 3 )
 expand = true
 stretch_mode = 6
 
 [node name="NameContainer" type="PanelContainer" parent="Center/HBox/ExamineContainer/VBox"]
-margin_top = 406.0
+margin_top = 481.0
 margin_right = 550.0
-margin_bottom = 450.0
+margin_bottom = 525.0
 
 [node name="Name" type="Label" parent="Center/HBox/ExamineContainer/VBox/NameContainer"]
 margin_right = 550.0
 margin_bottom = 44.0
-text = "Name"
 align = 1
 
 [node name="DescriptionContainer" type="PanelContainer" parent="Center/HBox/ExamineContainer/VBox"]
-margin_top = 480.0
+margin_top = 555.0
 margin_right = 550.0
-margin_bottom = 674.0
+margin_bottom = 599.0
 
 [node name="Description" type="Label" parent="Center/HBox/ExamineContainer/VBox/DescriptionContainer"]
 margin_right = 550.0
-margin_bottom = 194.0
-text = "Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla "
+margin_bottom = 44.0
 autowrap = true
 
 [node name="ButtonContainer" type="HBoxContainer" parent="Center"]
@@ -109,9 +111,15 @@ margin_right = 1920.0
 margin_bottom = 944.0
 alignment = 1
 
+[node name="Filler" type="Control" parent="Center/ButtonContainer"]
+margin_left = 658.0
+margin_right = 1158.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 500, 0 )
+
 [node name="Button" type="Button" parent="Center/ButtonContainer"]
-margin_left = 912.0
-margin_right = 1007.0
+margin_left = 1166.0
+margin_right = 1261.0
 margin_bottom = 50.0
 text = "Close"
 

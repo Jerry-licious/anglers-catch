@@ -7,12 +7,18 @@
 [ext_resource path="res://scripts/ui/FishingRewardScreen.gd" type="Script" id=5]
 
 [node name="FishRewardScreen" type="Control"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 5 )
 fishing_item = ExtResource( 4 )
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.501961 )
+
+[node name="BackgroundImage" type="TextureRect" parent="."]
 margin_left = -144.0
 margin_top = -122.0
 margin_right = 2163.0
@@ -20,7 +26,7 @@ margin_bottom = 1176.0
 texture = ExtResource( 1 )
 expand = true
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextBackground" type="TextureRect" parent="."]
 margin_left = 411.0
 margin_top = 130.0
 margin_right = 1632.0
