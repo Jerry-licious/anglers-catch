@@ -1,11 +1,25 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=53 format=2]
 
 [ext_resource path="res://images/land.png" type="Texture" id=1]
-[ext_resource path="res://images/tiles/water_fish.png" type="Texture" id=2]
+[ext_resource path="res://images/tiles/water_bottom_center.png" type="Texture" id=2]
 [ext_resource path="res://images/tiles/water_plain.png" type="Texture" id=3]
-[ext_resource path="res://images/tiles/Island_side.png" type="Texture" id=4]
+[ext_resource path="res://images/tiles/island_bottom.png" type="Texture" id=4]
 [ext_resource path="res://images/tiles/island_center.png" type="Texture" id=5]
-[ext_resource path="res://images/fishing/Waves.tres" type="Texture" id=6]
+[ext_resource path="res://images/tiles/water_bottom_left.png" type="Texture" id=6]
+[ext_resource path="res://images/tiles/water_bottom_right.png" type="Texture" id=7]
+[ext_resource path="res://images/tiles/water_center_top.png" type="Texture" id=8]
+[ext_resource path="res://images/tiles/water_center.png" type="Texture" id=9]
+[ext_resource path="res://images/tiles/water_top_left.png" type="Texture" id=10]
+[ext_resource path="res://images/tiles/water_center_right.png" type="Texture" id=11]
+[ext_resource path="res://images/tiles/water_top_right.png" type="Texture" id=12]
+[ext_resource path="res://images/tiles/water_center_left.png" type="Texture" id=13]
+[ext_resource path="res://images/tiles/island_bottom_left.png" type="Texture" id=14]
+[ext_resource path="res://images/tiles/island_bottom_right.png" type="Texture" id=15]
+[ext_resource path="res://images/tiles/island_top_left.png" type="Texture" id=16]
+[ext_resource path="res://images/tiles/island_top_right.png" type="Texture" id=17]
+[ext_resource path="res://images/tiles/island_left.png" type="Texture" id=18]
+[ext_resource path="res://images/tiles/island_right.png" type="Texture" id=19]
+[ext_resource path="res://images/tiles/island_top.png" type="Texture" id=20]
 
 [sub_resource type="PlaneMesh" id=1]
 
@@ -19,17 +33,81 @@ albedo_texture = ExtResource( 1 )
 [sub_resource type="SpatialMaterial" id=16]
 albedo_texture = ExtResource( 3 )
 
-[sub_resource type="SpatialMaterial" id=17]
+[sub_resource type="SpatialMaterial" id=20]
+albedo_texture = ExtResource( 9 )
+
+[sub_resource type="SpatialMaterial" id=21]
+albedo_texture = ExtResource( 13 )
+
+[sub_resource type="SpatialMaterial" id=22]
+albedo_texture = ExtResource( 11 )
+
+[sub_resource type="SpatialMaterial" id=23]
+albedo_texture = ExtResource( 8 )
+
+[sub_resource type="SpatialMaterial" id=68]
+albedo_texture = ExtResource( 2 )
+
+[sub_resource type="SpatialMaterial" id=72]
+albedo_texture = ExtResource( 10 )
+
+[sub_resource type="SpatialMaterial" id=25]
+albedo_texture = ExtResource( 12 )
+
+[sub_resource type="SpatialMaterial" id=18]
 albedo_texture = ExtResource( 6 )
+
+[sub_resource type="SpatialMaterial" id=19]
+albedo_texture = ExtResource( 7 )
 
 [sub_resource type="SpatialMaterial" id=7]
 albedo_texture = ExtResource( 5 )
 
-[sub_resource type="SpatialMaterial" id=8]
+[sub_resource type="BoxShape" id=28]
+
+[sub_resource type="SpatialMaterial" id=27]
 albedo_texture = ExtResource( 4 )
 
-[sub_resource type="SpatialMaterial" id=6]
-albedo_texture = ExtResource( 2 )
+[sub_resource type="BoxShape" id=29]
+
+[sub_resource type="SpatialMaterial" id=38]
+albedo_texture = ExtResource( 18 )
+
+[sub_resource type="BoxShape" id=39]
+
+[sub_resource type="SpatialMaterial" id=40]
+albedo_texture = ExtResource( 19 )
+
+[sub_resource type="BoxShape" id=42]
+
+[sub_resource type="SpatialMaterial" id=43]
+albedo_texture = ExtResource( 20 )
+
+[sub_resource type="BoxShape" id=41]
+
+[sub_resource type="SpatialMaterial" id=97]
+albedo_texture = ExtResource( 14 )
+
+[sub_resource type="BoxShape" id=31]
+extents = Vector3( 0.745366, 1, 0.816908 )
+
+[sub_resource type="SpatialMaterial" id=101]
+albedo_texture = ExtResource( 15 )
+
+[sub_resource type="BoxShape" id=103]
+extents = Vector3( 0.745366, 1, 0.816908 )
+
+[sub_resource type="SpatialMaterial" id=34]
+albedo_texture = ExtResource( 16 )
+
+[sub_resource type="BoxShape" id=107]
+extents = Vector3( 0.745366, 1, 0.816908 )
+
+[sub_resource type="SpatialMaterial" id=36]
+albedo_texture = ExtResource( 17 )
+
+[sub_resource type="BoxShape" id=37]
+extents = Vector3( 0.745366, 1, 0.816908 )
 
 [node name="Library" type="Spatial"]
 
@@ -48,22 +126,141 @@ transform = Transform( 12, 0, 0, 0, 1, 0, 0, 0, 12, 12, 0, 36 )
 mesh = SubResource( 4 )
 material/0 = SubResource( 16 )
 
-[node name="WaterBubbling" type="MeshInstance" parent="."]
+[node name="WaterCenter" type="MeshInstance" parent="."]
+transform = Transform( 12, 0, 0, 0, 1, 0, 0, 0, 12, 108, 0, 36 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 20 )
+
+[node name="WaterLeft" type="MeshInstance" parent="."]
+transform = Transform( 12, 0, 0, 0, 1, 0, 0, 0, 12, 132, 0, 36 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 21 )
+
+[node name="WaterRight" type="MeshInstance" parent="."]
+transform = Transform( 12, 0, 0, 0, 1, 0, 0, 0, 12, 156, 0, 36 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 22 )
+
+[node name="WaterTop" type="MeshInstance" parent="."]
+transform = Transform( 12, 0, 0, 0, 1, 0, 0, 0, 12, 180, 0, 36 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 23 )
+
+[node name="WaterBottom" type="MeshInstance" parent="."]
+transform = Transform( 12, 0, 0, 0, 1, 0, 0, 0, 12, 36, 0, 36 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 68 )
+
+[node name="WaterTopLeft" type="MeshInstance" parent="."]
+transform = Transform( 12, 0, 0, 0, 1, 0, 0, 0, 12, 204, 0, 36 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 72 )
+
+[node name="WaterTopRight" type="MeshInstance" parent="."]
+transform = Transform( 12, 0, 0, 0, 1, 0, 0, 0, 12, 228, 0, 36 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 25 )
+
+[node name="WaterBottomLeft" type="MeshInstance" parent="."]
 transform = Transform( 12, 0, 0, 0, 1, 0, 0, 0, 12, 60, 0, 36 )
 mesh = SubResource( 4 )
-material/0 = SubResource( 17 )
+material/0 = SubResource( 18 )
+
+[node name="WaterBottomRight" type="MeshInstance" parent="."]
+transform = Transform( 12, 0, 0, 0, 1, 0, 0, 0, 12, 84, 0, 36 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 19 )
 
 [node name="IslandCenter" type="MeshInstance" parent="."]
 transform = Transform( 12, 0, 0, 0, 1, 0, 0, 0, 12, 12, 0, 60 )
 mesh = SubResource( 4 )
 material/0 = SubResource( 7 )
 
-[node name="IslandCenter2" type="MeshInstance" parent="."]
+[node name="StaticBody" type="StaticBody" parent="IslandCenter"]
+
+[node name="CollisionShape" type="CollisionShape" parent="IslandCenter/StaticBody"]
+shape = SubResource( 28 )
+
+[node name="IslandBottom" type="MeshInstance" parent="."]
 transform = Transform( 12, 0, 0, 0, 1, 0, 0, 0, 12, 36, 0, 60 )
 mesh = SubResource( 4 )
-material/0 = SubResource( 8 )
+material/0 = SubResource( 27 )
 
-[node name="WaterFish" type="MeshInstance" parent="."]
-transform = Transform( 12, 0, 0, 0, 1, 0, 0, 0, 12, 36, 0, 36 )
+[node name="StaticBody" type="StaticBody" parent="IslandBottom"]
+
+[node name="CollisionShape" type="CollisionShape" parent="IslandBottom/StaticBody"]
+shape = SubResource( 29 )
+
+[node name="IslandLeft" type="MeshInstance" parent="."]
+transform = Transform( 12, 0, 0, 0, 1, 0, 0, 0, 12, 156, 0, 60 )
 mesh = SubResource( 4 )
-material/0 = SubResource( 6 )
+material/0 = SubResource( 38 )
+
+[node name="StaticBody" type="StaticBody" parent="IslandLeft"]
+
+[node name="CollisionShape" type="CollisionShape" parent="IslandLeft/StaticBody"]
+shape = SubResource( 39 )
+
+[node name="IslandRight" type="MeshInstance" parent="."]
+transform = Transform( 12, 0, 0, 0, 1, 0, 0, 0, 12, 180, 0, 60 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 40 )
+
+[node name="StaticBody" type="StaticBody" parent="IslandRight"]
+
+[node name="CollisionShape" type="CollisionShape" parent="IslandRight/StaticBody"]
+shape = SubResource( 42 )
+
+[node name="IslandTop" type="MeshInstance" parent="."]
+transform = Transform( 12, 0, 0, 0, 1, 0, 0, 0, 12, 204, 0, 60 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 43 )
+
+[node name="StaticBody" type="StaticBody" parent="IslandTop"]
+
+[node name="CollisionShape" type="CollisionShape" parent="IslandTop/StaticBody"]
+shape = SubResource( 41 )
+
+[node name="IslandBottomLeft" type="MeshInstance" parent="."]
+transform = Transform( 12, 0, 0, 0, 1, 0, 0, 0, 12, 60, 0, 60 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 97 )
+
+[node name="StaticBody" type="StaticBody" parent="IslandBottomLeft"]
+
+[node name="CollisionShape" type="CollisionShape" parent="IslandBottomLeft/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, -0.166665 )
+shape = SubResource( 31 )
+
+[node name="IslandBottomRight" type="MeshInstance" parent="."]
+transform = Transform( 12, 0, 0, 0, 1, 0, 0, 0, 12, 84, 0, 60 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 101 )
+
+[node name="StaticBody" type="StaticBody" parent="IslandBottomRight"]
+
+[node name="CollisionShape" type="CollisionShape" parent="IslandBottomRight/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, -0.166665 )
+shape = SubResource( 103 )
+
+[node name="IslandTopLeft" type="MeshInstance" parent="."]
+transform = Transform( 12, 0, 0, 0, 1, 0, 0, 0, 12, 108, 0, 60 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 34 )
+
+[node name="StaticBody" type="StaticBody" parent="IslandTopLeft"]
+
+[node name="CollisionShape" type="CollisionShape" parent="IslandTopLeft/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, 0.166669 )
+shape = SubResource( 107 )
+
+[node name="IslandTopRight" type="MeshInstance" parent="."]
+transform = Transform( 12, 0, 0, 0, 1, 0, 0, 0, 12, 132, 0, 60 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 36 )
+
+[node name="StaticBody" type="StaticBody" parent="IslandTopRight"]
+
+[node name="CollisionShape" type="CollisionShape" parent="IslandTopRight/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 0.166669 )
+shape = SubResource( 37 )

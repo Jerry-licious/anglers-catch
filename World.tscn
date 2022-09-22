@@ -13,6 +13,8 @@ script = ExtResource( 5 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Overlay" parent="CanvasLayer" instance=ExtResource( 6 )]
+margin_left = 1.0
+margin_right = 1.0
 
 [node name="Inventory" parent="CanvasLayer" instance=ExtResource( 4 )]
 visible = false
@@ -27,5 +29,5 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.5153, -6.21697, -33.1743 )
 transform = Transform( 0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 0, 3.1892, 0 )
 
 [connection signal="open_inventory" from="CanvasLayer/Overlay" to="." method="_on_overlay_open_inventory"]
-[connection signal="catch" from="Player" to="CanvasLayer/FishRewardScreen" method="_on_catch"]
 [connection signal="catch" from="Player" to="CanvasLayer/Inventory" method="_on_catch"]
+[connection signal="catch" from="Player" to="CanvasLayer/FishRewardScreen" method="_on_catch"]
