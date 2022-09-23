@@ -113,7 +113,7 @@ extents = Vector3( 79, 10, 1020.1 )
 extents = Vector3( 948.148, 10, 74.4883 )
 
 [node name="World" type="Spatial"]
-transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
 script = ExtResource( 5 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -124,12 +124,10 @@ pause_mode = 2
 [node name="Inventory" parent="CanvasLayer" instance=ExtResource( 4 )]
 
 [node name="FishRewardScreen" parent="CanvasLayer" instance=ExtResource( 3 )]
+visible = false
 
 [node name="Tilemap" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.5153, -8.89472, -33.1743 )
-
-[node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 0, 0.686508, 0 )
 
 [node name="FishingRegion" parent="." instance=ExtResource( 7 )]
 item_pool = [ ExtResource( 9 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 10 ), ExtResource( 8 ) ]
@@ -262,7 +260,7 @@ shape = SubResource( 29 )
 transform = Transform( 1, 0, 0, 0, 30, 0, 0, 0, 1, -45.9225, 20, -702.909 )
 shape = SubResource( 29 )
 
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 2.59808, 0, 1.5, 0, 3, 0, -1.5, 0, 2.59808, 7.53942, 2.47651, -74.7822 )
+
 [connection signal="open_inventory" from="CanvasLayer/Overlay" to="." method="_on_overlay_open_inventory"]
-[connection signal="dismiss" from="CanvasLayer/FishRewardScreen" to="Player" method="_examine_fish"]
-[connection signal="catch" from="Player" to="CanvasLayer/Inventory" method="_on_catch"]
-[connection signal="catch" from="Player" to="CanvasLayer/FishRewardScreen" method="_on_catch"]

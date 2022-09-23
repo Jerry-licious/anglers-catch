@@ -9,4 +9,4 @@ name = "Teddy Head"
 image = ExtResource( 2 )
 description = "A teddy's head, this seems to be missing a body"
 examination_quotes = [ "I wonder where this is heading" ]
-exhaustable = false
+exhaustable = true
