@@ -2,6 +2,9 @@
 tool
 extends Control
 
+# Sends a signal when the player dismisses an item so the character can speak.
+signal dismiss(item)
+
 # The fishing item that the screen represents.
 # THIS HAS TO BE AN INSTANCE OF FISHINGITEM.
 export(Resource) var fishing_item
@@ -31,10 +34,13 @@ func load_fishing_item(item):
 func _dismiss_menu():
 	hide()
 	get_tree().paused = false
+	emit_signal("dismiss", fishing_item)
 
 
 # Connected to the signal when the player catches a fish.
 func _on_catch(item):
+	fishing_item = item
+	
 	load_fishing_item(item)
 	show()
 	get_tree().paused = true

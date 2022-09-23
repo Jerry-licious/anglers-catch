@@ -39,5 +39,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0484058, -2.33363, 0.0913162
 shape = SubResource( 1 )
 
 [connection signal="open_inventory" from="CanvasLayer/Overlay" to="." method="_on_overlay_open_inventory"]
+[connection signal="dismiss" from="CanvasLayer/FishRewardScreen" to="Player" method="_examine_fish"]
 [connection signal="catch" from="Player" to="CanvasLayer/Inventory" method="_on_catch"]
 [connection signal="catch" from="Player" to="CanvasLayer/FishRewardScreen" method="_on_catch"]

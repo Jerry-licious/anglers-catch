@@ -242,3 +242,8 @@ func get_fish() -> FishingItem:
 			return area.get_item()
 	# This shouldn't happen.
 	return null
+
+
+func _examine_fish(item: FishingItem):
+	if item.has_examination_quote():
+		speak(item.get_random_examination_quote())
