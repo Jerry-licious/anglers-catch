@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/gridmap/GridMap.tscn" type="PackedScene" id=2]
@@ -6,8 +6,105 @@
 [ext_resource path="res://scenes/ui/InventoryScreen.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scripts/Main.gd" type="Script" id=5]
 [ext_resource path="res://scenes/ui/Overlay.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/FishingRegion.tscn" type="PackedScene" id=7]
+[ext_resource path="res://items/Smallmouth Bass.tres" type="Resource" id=8]
+[ext_resource path="res://items/Bear Arm.tres" type="Resource" id=9]
+[ext_resource path="res://items/Rainbow Trout.tres" type="Resource" id=10]
+[ext_resource path="res://items/Brown Trout.tres" type="Resource" id=11]
+[ext_resource path="res://items/Lake Trout.tres" type="Resource" id=12]
+[ext_resource path="res://items/Boot.tres" type="Resource" id=13]
+[ext_resource path="res://items/Brook Trout.tres" type="Resource" id=14]
+[ext_resource path="res://items/Bear Head.tres" type="Resource" id=15]
+[ext_resource path="res://items/Yellow Perch.tres" type="Resource" id=16]
+[ext_resource path="res://items/Shrimp.tres" type="Resource" id=17]
+[ext_resource path="res://items/Tin Can.tres" type="Resource" id=18]
+[ext_resource path="res://items/Landlocked Atlantic Salmon.tres" type="Resource" id=19]
+[ext_resource path="res://items/Plastic Bag.tres" type="Resource" id=20]
+[ext_resource path="res://items/White Perch.tres" type="Resource" id=21]
+[ext_resource path="res://items/Chain Pickerel.tres" type="Resource" id=22]
+[ext_resource path="res://items/Eel.tres" type="Resource" id=23]
+[ext_resource path="res://items/Bear Body.tres" type="Resource" id=24]
+
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 47.0201, 18.7824, 37.507 )
+
+[sub_resource type="BoxShape" id=5]
+extents = Vector3( 27.7187, 40.016, 25.4259 )
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 43.3599, 18.7824, 47.9136 )
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 73.1473, 16.4686, 76.0142 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 65.4253, 16.4686, 60.7335 )
+
+[sub_resource type="BoxShape" id=6]
+extents = Vector3( 98.6614, 16.4686, 110.644 )
+
+[sub_resource type="BoxShape" id=7]
+extents = Vector3( 116.546, 16.4686, 131.386 )
+
+[sub_resource type="BoxShape" id=8]
+extents = Vector3( 116.546, 16.4686, 170.458 )
+
+[sub_resource type="BoxShape" id=9]
+extents = Vector3( 140.753, 16.4686, 170.458 )
+
+[sub_resource type="BoxShape" id=10]
+extents = Vector3( 140.753, 16.4686, 85.7396 )
+
+[sub_resource type="BoxShape" id=11]
+extents = Vector3( 70.6202, 16.4686, 75.3137 )
+
+[sub_resource type="BoxShape" id=12]
+extents = Vector3( 104.385, 16.4686, 106.184 )
+
+[sub_resource type="BoxShape" id=13]
+extents = Vector3( 104.385, 16.4686, 106.184 )
+
+[sub_resource type="BoxShape" id=14]
+extents = Vector3( 577.152, 43.1916, 176.743 )
+
+[sub_resource type="BoxShape" id=15]
+extents = Vector3( 577.152, 43.1916, 176.743 )
+
+[sub_resource type="BoxShape" id=16]
+extents = Vector3( 344.158, 43.1916, 360.158 )
+
+[sub_resource type="BoxShape" id=17]
+extents = Vector3( 141.548, 43.1916, 385.877 )
+
+[sub_resource type="BoxShape" id=18]
+extents = Vector3( 297.755, 43.1916, 103.702 )
+
+[sub_resource type="BoxShape" id=19]
+extents = Vector3( 196.376, 43.1916, 130.584 )
+
+[sub_resource type="BoxShape" id=20]
+extents = Vector3( 196.376, 43.1916, 598.801 )
+
+[sub_resource type="BoxShape" id=21]
+extents = Vector3( 196.376, 43.1916, 186.789 )
+
+[sub_resource type="BoxShape" id=22]
+extents = Vector3( 81.2645, 43.1916, 86.4568 )
+
+[sub_resource type="BoxShape" id=23]
+extents = Vector3( 132.265, 43.1916, 86.4568 )
+
+[sub_resource type="BoxShape" id=24]
+extents = Vector3( 195.665, 43.1916, 86.4568 )
+
+[sub_resource type="BoxShape" id=25]
+extents = Vector3( 195.665, 68.374, 181.546 )
+
+[sub_resource type="BoxShape" id=26]
+extents = Vector3( 88.5807, 68.374, 181.546 )
 
 [node name="World" type="Spatial"]
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
 script = ExtResource( 5 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -24,6 +121,119 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.5153, -8.89472, -33.1743 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 0, 0.686508, 0 )
+
+[node name="FishingRegion" parent="." instance=ExtResource( 7 )]
+item_pool = [ ExtResource( 9 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 10 ), ExtResource( 8 ) ]
+
+[node name="CollisionShape3" type="CollisionShape" parent="FishingRegion"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -256.147, -5.64005, -105.041 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape4" type="CollisionShape" parent="FishingRegion"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 653.738, -5.64005, 480.939 )
+shape = SubResource( 5 )
+
+[node name="CollisionShape5" type="CollisionShape" parent="FishingRegion"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -639.13, -5.64005, -592.227 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="FishingRegion"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -189.867, -2.82002, 278.542 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="FishingRegion"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 99.4012, -1.71938, 48.9769 )
+shape = SubResource( 3 )
+
+[node name="FishingRegion2" parent="." instance=ExtResource( 7 )]
+item_pool = [ ExtResource( 14 ), ExtResource( 11 ), ExtResource( 15 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 17 ) ]
+
+[node name="CollisionShape" type="CollisionShape" parent="FishingRegion2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0543, -1.71938, -516.294 )
+shape = SubResource( 6 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="FishingRegion2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -308.122, -1.71938, -353.545 )
+shape = SubResource( 7 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="FishingRegion2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 615.078, -1.71938, -298.796 )
+shape = SubResource( 8 )
+
+[node name="CollisionShape4" type="CollisionShape" parent="FishingRegion2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 134.262, -1.71938, 294.66 )
+shape = SubResource( 9 )
+
+[node name="CollisionShape5" type="CollisionShape" parent="FishingRegion2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28.508, -1.70954, -108.386 )
+shape = SubResource( 10 )
+
+[node name="CollisionShape6" type="CollisionShape" parent="FishingRegion2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -340.306, -1.70954, 82.47 )
+shape = SubResource( 11 )
+
+[node name="CollisionShape7" type="CollisionShape" parent="FishingRegion2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -302.127, -1.70954, 498.732 )
+shape = SubResource( 12 )
+
+[node name="CollisionShape8" type="CollisionShape" parent="FishingRegion2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -449.17, -1.75043, 861.251 )
+shape = SubResource( 13 )
+
+[node name="FishingRegion3" parent="." instance=ExtResource( 7 )]
+item_pool = [ ExtResource( 14 ), ExtResource( 11 ), ExtResource( 24 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 21 ), ExtResource( 16 ), ExtResource( 20 ), ExtResource( 8 ), ExtResource( 10 ) ]
+
+[node name="CollisionShape8" type="CollisionShape" parent="FishingRegion3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 307.299, 4.38177, 840.033 )
+shape = SubResource( 14 )
+
+[node name="CollisionShape9" type="CollisionShape" parent="FishingRegion3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 462.991, 4.38177, 670.491 )
+shape = SubResource( 15 )
+
+[node name="CollisionShape10" type="CollisionShape" parent="FishingRegion3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 676.16, 4.38177, 315.405 )
+shape = SubResource( 16 )
+
+[node name="CollisionShape11" type="CollisionShape" parent="FishingRegion3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 342.524, 4.38177, -285.613 )
+shape = SubResource( 17 )
+
+[node name="CollisionShape12" type="CollisionShape" parent="FishingRegion3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 627.036, 4.38177, -591.435 )
+shape = SubResource( 18 )
+
+[node name="CollisionShape13" type="CollisionShape" parent="FishingRegion3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -349.69, 4.38177, -635.865 )
+shape = SubResource( 19 )
+
+[node name="CollisionShape14" type="CollisionShape" parent="FishingRegion3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -624.183, 4.38177, 116.738 )
+shape = SubResource( 20 )
+
+[node name="CollisionShape15" type="CollisionShape" parent="FishingRegion3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -765.984, 4.38177, 807.221 )
+shape = SubResource( 21 )
+
+[node name="CollisionShape16" type="CollisionShape" parent="FishingRegion3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -364.676, 4.38177, 280.1 )
+shape = SubResource( 22 )
+
+[node name="CollisionShape17" type="CollisionShape" parent="FishingRegion3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -106.754, 4.38177, 95.8698 )
+shape = SubResource( 23 )
+
+[node name="CollisionShape18" type="CollisionShape" parent="FishingRegion3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14.0194, 4.38177, -299.201 )
+shape = SubResource( 24 )
+
+[node name="CollisionShape19" type="CollisionShape" parent="FishingRegion3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 273.988, 4.38177, -487.525 )
+shape = SubResource( 25 )
+
+[node name="CollisionShape20" type="CollisionShape" parent="FishingRegion3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -89.7426, 4.38177, 564.078 )
+shape = SubResource( 26 )
 
 [connection signal="open_inventory" from="CanvasLayer/Overlay" to="." method="_on_overlay_open_inventory"]
 [connection signal="dismiss" from="CanvasLayer/FishRewardScreen" to="Player" method="_examine_fish"]
