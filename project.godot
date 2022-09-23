@@ -32,7 +32,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="CozyJam"
+config/name="Angler's Catch"
 run/main_scene="res://World.tscn"
 boot_splash/image="res://images/splash.png"
 config/icon="res://icon.png"

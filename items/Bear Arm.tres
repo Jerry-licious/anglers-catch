@@ -7,4 +7,4 @@ script = ExtResource( 1 )
 name = "Teddy Arm"
 description = "A teddy's arm, this seems to be missing a body"
 examination_quotes = [ "Armed and ready" ]
-exhaustable = false
+exhaustable = true

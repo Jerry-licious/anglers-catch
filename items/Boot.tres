@@ -9,4 +9,4 @@ name = "Old Boot"
 image = ExtResource( 2 )
 description = "An old boot, maybe you can use it as a planter?"
 examination_quotes = [ "One size too small", "A Classic", "Half an armor bar", "Our ecological footprint" ]
-exhaustable = false
+exhaustable = true

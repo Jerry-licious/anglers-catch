@@ -9,4 +9,4 @@ name = "Tin Can"
 image = ExtResource( 2 )
 description = "An opened can of worms"
 examination_quotes = [ "Someone else's dinner", "Cleaning our waters, one can at a time", "Can it? It Can", "I wonder if this can be recycled", "Someone's can of worms" ]
-exhaustable = false
+exhaustable = true
