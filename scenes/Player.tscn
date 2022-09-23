@@ -42,7 +42,6 @@ transform = Transform( 1, 0, 0, 0, 0.5, 0.866026, 0, -0.866026, 0.5, 0, 0, 0 )
 transform = Transform( 0.600001, -2.68221e-07, 1.4343e-10, 2.98023e-08, 0.519616, 0.5, -8.9407e-08, -0.3, 0.866025, 1.22784, -0.0572835, -0.4049 )
 opacity = 0.0
 frames = ExtResource( 6 )
-frame = 4
 playing = true
 
 [node name="Back" type="Sprite3D" parent="Layers"]

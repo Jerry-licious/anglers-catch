@@ -4,10 +4,10 @@
 
 [resource]
 script = ExtResource( 1 )
-cannot_fish_because_player_is_moving = "Can't fish because I'm moving!"
-cannot_move_because_player_is_fishing = "Can't move because I'm fishing!"
-premature_pull = "Shouldn't have pulled when it wasn't bubbling."
-missed_fish = "Almost got it!"
-hooked = "Ah, it's hooked!"
-not_hooked = "Looks like we're waiting this one out."
-no_fish = "Doesn't seem like there's anything here."
+cannot_fish_because_player_is_moving = "I'll have to stop to cast the line"
+cannot_move_because_player_is_fishing = "Moving now would disturb the fishes"
+premature_pull = "Looks like I still haven't gotten over my impatience"
+missed_fish = "Darn, these old bones are slower than I used to be"
+hooked = "Caught, hook line and sinker"
+not_hooked = "Nothing's munched on the bait yet"
+no_fish = "No single fish in your area"
