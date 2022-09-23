@@ -11,7 +11,7 @@ signal catch(item)
 
 # The strength of the movement vector. 
 # This determines how fast the boat accelerates.
-const movement_strength = 0.05
+const movement_strength = 0.1
 # How long the character speaks for, in seconds.
 const speech_time = 1.8
 

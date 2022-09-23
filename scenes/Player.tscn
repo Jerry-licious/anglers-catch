@@ -36,13 +36,12 @@ transform = Transform( -5.96046e-08, 0, 1, 0, 1, 0, -1, 0, -5.96046e-08, 0, 0, 0
 shape = SubResource( 1 )
 
 [node name="Layers" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.5, 0.866026, 0, -0.866026, 0.5, 0, 0, 0 )
+transform = Transform( 1.2, 2.98023e-08, 0, 0, 0.6, 0.866026, 0, -1.03923, 0.5, 0, 0, 0 )
 
 [node name="Bubbles" type="AnimatedSprite3D" parent="Layers"]
-transform = Transform( 0.600001, -2.68221e-07, 1.4343e-10, 2.98023e-08, 0.519616, 0.5, -8.9407e-08, -0.3, 0.866025, 1.22784, -0.0572835, -0.4049 )
+transform = Transform( 0.600001, -2.38419e-07, 7.45058e-09, 1.49012e-08, 0.519616, 0.5, -7.45058e-08, -0.3, 0.866025, 1.22784, -0.0572835, -0.4049 )
 opacity = 0.0
 frames = ExtResource( 6 )
-frame = 4
 playing = true
 
 [node name="Back" type="Sprite3D" parent="Layers"]
@@ -65,10 +64,11 @@ animation = "moving"
 transform = Transform( 0.8, 2.98023e-08, 7.45058e-08, -2.08616e-07, 0.8, -8.9407e-08, -1.04308e-07, 2.98023e-08, 1, -0.114635, -0.69278, -1.49012e-08 )
 opacity = 0.0
 frames = ExtResource( 5 )
+frame = 1
 playing = true
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, -5.96046e-08, 0, 0, 0.5, 0.866026, -2.98023e-08, -0.866026, 0.5, 0, 10, 5 )
+transform = Transform( 1, 0, 1.49012e-08, 0, 0.5, 0.866026, 0, -0.866026, 0.5, -1.66893e-06, 11.0953, 5.63239 )
 current = true
 
 [node name="Speech" type="Label3D" parent="."]
