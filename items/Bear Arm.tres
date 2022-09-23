@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://scripts/FishingItem.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+name = "Teddy Arm"
+description = "A teddy's arm, this seems to be missing a body"
+examination_quotes = [ "Armed and ready" ]
+exhaustable = false
